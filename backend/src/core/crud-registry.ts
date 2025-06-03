@@ -1,9 +1,9 @@
 
 import { PgTable } from 'drizzle-orm/pg-core';
-import { StandardEntity } from '../../lib/index';
+import { StandardEntity } from '../../../lib/index';
 import {db} from '../database/connection'; 
 import { logger } from '../utils/logger';
-import { GenericCrudEngine , PostgresAdapter } from '../../lib/index';
+import { GenericCrudEngine , PostgresAdapter } from '../../../lib/index';
 
 import {events , users , orders , Product} from '../database/schemas/index';
 

@@ -1,3 +1,4 @@
+export { createStandardTable } from './schema/baseSchema';
 
 export { GenericCrudEngine } from './core/crud-engine';
 export { PostgresAdapter } from './adapters/postgres-adapter';

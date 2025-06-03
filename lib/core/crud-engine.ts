@@ -29,6 +29,28 @@ export class GenericCrudEngine<T extends StandardEntity> {
     this.idGenerator = config.idGenerator || generateXid;
   }
 
+  async create(data: Omit<T, 'wid' | 'id' | 'created_at' | 'deleted_at'>): Promise<T> {
+    try {
+      const id = this.idGenerator();
+      const newRecord = {
+        ...data,
+        id,
+        created_at: new Date(),
+      };
+
+      const result = await this.config.database
+        .insert(this.table)
+        .values(newRecord as any)
+        .returning();
+
+      this.logger.info(`Created new ${this.modelName} with id: ${id}`);
+      return result[0] as unknown as T;
+    } catch (error) {
+      this.logger.error(`Error in create for ${this.modelName}:`, error);
+      throw error;
+    }
+  }
+
   private buildWhereClause(filters: Filter[], includeDeleted: boolean = false): SQL[] {
     const conditions: SQL[] = [];
 
@@ -151,28 +173,6 @@ export class GenericCrudEngine<T extends StandardEntity> {
       return (result[0] as T) || null;
     } catch (error) {
       this.logger.error(`Error in findById for ${this.modelName}:`, error);
-      throw error;
-    }
-  }
-
-  async create(data: Omit<T, 'wid' | 'id' | 'created_at' | 'deleted_at'>): Promise<T> {
-    try {
-      const id = this.idGenerator();
-      const newRecord = {
-        ...data,
-        id,
-        created_at: new Date(),
-      };
-
-      const result = await this.config.database
-        .insert(this.table)
-        .values(newRecord as any)
-        .returning();
-
-      this.logger.info(`Created new ${this.modelName} with id: ${id}`);
-      return result[0] as unknown as T;
-    } catch (error) {
-      this.logger.error(`Error in create for ${this.modelName}:`, error);
       throw error;
     }
   }

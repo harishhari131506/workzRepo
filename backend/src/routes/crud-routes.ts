@@ -1,7 +1,7 @@
 
 import { Router, Request, Response, NextFunction } from 'express';
 import { CrudRegistry } from '../core/crud-registry';
-import { QueryParams } from '../../lib/index';
+import { QueryParams } from '../../../lib/index';
 import { validateQuery, validateBody, querySchema, createSchema, updateSchema } from '../middleware/validation';
 import { logger } from '../utils/logger';
 
