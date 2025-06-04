@@ -135,7 +135,7 @@ export class GenericCrudEngine<T extends StandardEntity> {
       }
 
       const countCondition = whereConditions.length > 0 ? and(...whereConditions) : undefined;
-      
+      this.logger.info(`${countCondition} it's coming`  )
       const [data, total] = await Promise.all([
         query
           .orderBy(...orderBy)
