@@ -1,0 +1,27 @@
+{
+  "name": "crudts_updated",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Harish",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^22.15.30",
+    "@types/pg": "^8.15.4",
+    "drizzle-kit": "^0.31.1",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.15.8",
+    "drizzle-orm": "^0.44.2",
+    "pg": "^8.16.0",
+    "uuid": "^11.1.0"
+  }
+}
