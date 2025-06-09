@@ -25,7 +25,7 @@ export async function getLatestRecords<T extends BaseRecord>(
     .select()
     .from(table)
     .where(allConditions)
-    .orderBy(desc(table.createdAt));
+    .orderBy(desc(table.updatedAt));
 }
 
 // Utility function to get latest record by id within workspace

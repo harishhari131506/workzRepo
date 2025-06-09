@@ -71,7 +71,8 @@ async function initializeModels(): Promise<void> {
 // CREATE User
 app.post('/api/users', async (req: any, res: any) => {
   try {
-    const { workspaceId, name, email, age, isActive, profile } = req.body;
+    const { workspaceId, name, data } = req.body;
+    const { email, age, phone, address } = data || {};
 
     if (!workspaceId || !name) {
       return res.status(400).json({ error: 'workspaceId and name are required' });
@@ -83,8 +84,8 @@ app.post('/api/users', async (req: any, res: any) => {
       data: {
         email,
         age,
-        isActive: isActive ?? true,
-        profile: profile || {},
+        phone: phone ,
+        address: address || {},
         lastLogin: new Date().toISOString()
       }
     });

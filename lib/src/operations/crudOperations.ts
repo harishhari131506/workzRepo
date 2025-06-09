@@ -195,7 +195,7 @@ export class CrudOperations {
       workspaceId,
       id
     );
-
+    console.log(activeRecord , "----AA")
     if (!activeRecord) {
       console.warn(
         `No active record found to delete for ${modelName} with id: ${id} in workspace: ${workspaceId}`
